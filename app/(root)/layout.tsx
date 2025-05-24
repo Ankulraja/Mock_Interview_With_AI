@@ -3,7 +3,7 @@ import Image from "next/image";
 import { ReactNode } from "react";
 import { redirect } from "next/navigation";
 import { isAuthenticated } from "@/lib/action/auth.action";
-import { signOut } from "@/lib/action/auth.action";
+// import { signOut } from "@/lib/action/auth.action";
 import LogoutButton from "../(auth)/logout/page";
 
 const Layout = async ({ children }: { children: ReactNode }) => {
