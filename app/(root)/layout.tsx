@@ -3,8 +3,8 @@ import Image from "next/image";
 import { ReactNode } from "react";
 import { redirect } from "next/navigation";
 import { isAuthenticated } from "@/lib/action/auth.action";
-
-
+import { signOut } from "@/lib/action/auth.action";
+import LogoutButton from "../(auth)/logout/page";
 
 const Layout = async ({ children }: { children: ReactNode }) => {
   const isUserAuthenticated = await isAuthenticated();
@@ -12,13 +12,18 @@ const Layout = async ({ children }: { children: ReactNode }) => {
 
   return (
     <div className="root-layout">
-      <nav>
-        <Link href="/" className="flex items-center gap-2">
+      <nav className="flex flex-col sm:flex-row justify-between items-center p-4 shadow-md">
+        {/* Logo & Title */}
+        <Link href="/" className="flex items-center gap-2 mb-2 sm:mb-0">
           <Image src="/logo.svg" alt="MockMate Logo" width={38} height={32} />
-          <h2 className="text-primary-100">PrepWise</h2>
+          <h2 className="text-primary-100 text-lg font-semibold">PrepWise</h2>
         </Link>
+
+        {/* Logout Button */}
+        <LogoutButton/>
       </nav>
 
+      {/* Page Content */}
       {children}
     </div>
   );
