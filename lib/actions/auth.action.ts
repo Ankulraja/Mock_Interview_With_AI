@@ -12,7 +12,7 @@ export async function setSessionCookie(idToken: string) {
 
   // Create session cookie
   const sessionCookie = await auth.createSessionCookie(idToken, {
-    expiresIn: SESSION_DURATION * 1000, 
+    expiresIn: SESSION_DURATION * 1000,
   });
 
   // Set cookie in the browser
@@ -49,11 +49,15 @@ export async function signUp(params: SignUpParams) {
       success: true,
       message: "Account created successfully. Please sign in.",
     };
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("Error creating user:", error);
 
     // Handle Firebase specific errors
-    if (error.code === "auth/email-already-exists") {
+    if (
+      error instanceof Error &&
+      "code" in error &&
+      error.code === "auth/email-already-exists"
+    ) {
       return {
         success: false,
         message: "This email is already in use",
@@ -79,8 +83,13 @@ export async function signIn(params: SignInParams) {
       };
 
     await setSessionCookie(idToken);
-  } catch (error: any) {
-    console.log("");
+
+    return {
+      success: true,
+      message: "Successfully signed in.",
+    };
+  } catch (error: unknown) {
+    console.error("Error signing in:", error);
 
     return {
       success: false,

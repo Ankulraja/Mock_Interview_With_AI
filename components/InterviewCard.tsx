@@ -18,7 +18,7 @@ interface InterviewCardProps {
 
 const InterviewCard = ({
   interviewId,
-  userId,
+  // userId,
   role,
   type,
   techstack,
