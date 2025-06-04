@@ -2,9 +2,9 @@ import Link from "next/link";
 import Image from "next/image";
 import { ReactNode } from "react";
 import { redirect } from "next/navigation";
-import { isAuthenticated } from "@/lib/action/auth.action";
+import { isAuthenticated } from "@/lib/actions/auth.action";
 // import { signOut } from "@/lib/action/auth.action";
-import LogoutButton from "../(auth)/logout/page";
+
 
 const Layout = async ({ children }: { children: ReactNode }) => {
   const isUserAuthenticated = await isAuthenticated();
@@ -20,7 +20,6 @@ const Layout = async ({ children }: { children: ReactNode }) => {
         </Link>
 
         {/* Logout Button */}
-        <LogoutButton/>
       </nav>
 
       {/* Page Content */}
