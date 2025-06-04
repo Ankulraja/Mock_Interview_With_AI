@@ -8,8 +8,12 @@ const monaSans = Mona_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Mock Interview",
+  title: "MockIQ",
   description: "It's an AI Powered Platform for Mock Interview",
+  icons: {
+    icon: [{ url: "/MockIQ.png" }, { url: "/logo.svg" }],
+    apple: "/MockIQ.png",
+  },
 };
 
 export default function RootLayout({
